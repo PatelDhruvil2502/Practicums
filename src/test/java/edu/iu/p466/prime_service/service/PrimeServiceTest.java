@@ -17,8 +17,8 @@ class PrimeServiceTest {
 
     @Test
     void _285191IsPrime() {
-        int n = 285191;
-        boolean expected = false;
+        long n = 285191;
+        boolean expected = true;
         boolean actual = primeService.isPrime(n);
         assertEquals(expected, actual);
     }
