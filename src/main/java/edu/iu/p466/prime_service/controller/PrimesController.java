@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequestMapping("/primes")
 public class PrimesController {
-    IPrimeService primeService;
-    public PrimesController(IPrimeService primeService) {
-        this.primeService = primeService;
+    IPrimeService primesService;
+    public PrimesController(IPrimeService primesService) {
+        this.primesService = primesService;
     }
 
     @GetMapping("/{n}")
     public boolean IsPrime(@PathVariable int n) {
-        return primeService.isPrime(n);
+        return primesService.isPrime(n);
     }
 }
