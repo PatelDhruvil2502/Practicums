@@ -11,9 +11,11 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import edu.iu.p466.prime_service.model.Customer;
 
+@Repository
 public class AuthenticationFileRepository implements IAuthenticationRepository {
 
     private static final Logger LOG = LoggerFactory.getLogger(AuthenticationFileRepository.class);
