@@ -34,6 +34,21 @@ public class AuthenticationFileRepository implements IAuthenticationRepository {
     }
 
     @Override
+    public Customer findByUsername(String username) throws IOException {
+        Path path = Paths.get(DATABASE_NAME);
+        List<String> data = Files.readAllLines(path);
+        for (String line : data) {
+            if (!line.trim().isEmpty()) {
+                String[] properties = line.split(",");
+                if (properties[0].trim().equalsIgnoreCase(username.trim())) {
+                    return new Customer(properties[0].trim(), properties[1].trim());
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
     public boolean save(Customer customer) throws IOException {
         Customer x = findByUsername(customer.getUsername());
         if (x == null) {
@@ -50,20 +65,4 @@ public class AuthenticationFileRepository implements IAuthenticationRepository {
         }
         return false;
     }
-
-    @Override
-    public Customer findByUsername(String username) throws IOException {
-        Path path = Paths.get(DATABASE_NAME);
-        List<String> data = Files.readAllLines(path);
-        for (String line : data) {
-            if (!line.trim().isEmpty()) {
-                String[] properties = line.split(",");
-                if (properties[0].trim().equalsIgnoreCase(username.trim())) {
-                    return new Customer(properties[0].trim(), properties[1].trim());
-                }
-            }
-        }
-        return null;
-    }
-
 }
