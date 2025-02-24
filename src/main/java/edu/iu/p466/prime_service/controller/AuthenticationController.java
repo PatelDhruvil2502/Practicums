@@ -5,13 +5,13 @@ import java.io.IOException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.token.TokenService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.iu.p466.prime_service.model.Customer;
 import edu.iu.p466.prime_service.service.IAuthenticationService;
+import edu.iu.p466.prime_service.service.TokenService;
 
 @RestController
 public class AuthenticationController {
@@ -20,14 +20,10 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     public AuthenticationController(AuthenticationManager authenticationManager,
-            IAuthenticationService authenticationService, TokenService tokenService) {
+            TokenService tokenService, IAuthenticationService authenticationService) {
         this.authenticationManager = authenticationManager;
         this.authenticationService = authenticationService;
         this.tokenService = tokenService;
-    }
-
-    public AuthenticationController(IAuthenticationService authenticationService) {
-        this.authenticationService = authenticationService;
     }
 
     @PostMapping("/register")
@@ -37,12 +33,6 @@ public class AuthenticationController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public AuthenticationController(AuthenticationManager authenticationManager,
-            IAuthenticationService authenticationService) {
-        this.authenticationManager = authenticationManager;
-        this.authenticationService = authenticationService;
     }
 
     @PostMapping("/login")

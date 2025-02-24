@@ -1,3 +1,4 @@
 your_desired_username,$2a$10$dmZ7POY6dbGqS53AVLTuXevkU.d9dd4V0oHRZuuiB/hyfmIqBhnlS
 john,$2a$10$hmBc3XcFwGxvYbILxE6b/ee6MO1hMKSGA2FK/mksuZF4bSVPxLH76
 john11,$2a$10$xC9ZI5leZM4xCMR1K8FTruA9lQ8f.YNWClBIhSOjzONJM8ELtK6h.
+dev,$2a$10$4KY2JiwrFFWm3I8Ap1GThupF1vv8g9wdVoVkZFSylI65vQHjhjhnS
