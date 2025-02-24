@@ -2,6 +2,9 @@ package edu.iu.p466.prime_service.controller;
 
 import java.io.IOException;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,5 +28,23 @@ public class AuthenticationController {
             throw new RuntimeException(e);
         }
     }
+    // private final AuthenticationManager authenticationManager;
+
+    // public AuthenticationController(AuthenticationManager authenticationManager,
+    // IAuthenticationService authenticationService) {
+    // this.authenticationManager = authenticationManager;
+    // this.authenticationService = authenticationService;
+    // }
+
+    // @PostMapping("/login")
+    // public String login(@RequestBody Customer customer) {
+    // Authentication authentication = authenticationManager
+    // .authenticate(
+    // new UsernamePasswordAuthenticationToken(
+    // customer.getUsername(),
+    // customer.getPassword()));
+
+    // return "success!";
+    // }
 
 }

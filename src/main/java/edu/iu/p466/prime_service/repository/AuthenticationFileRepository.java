@@ -11,9 +11,11 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import edu.iu.p466.prime_service.model.Customer;
 
+@Repository
 public class AuthenticationFileRepository implements IAuthenticationRepository {
 
     private static final Logger LOG = LoggerFactory.getLogger(AuthenticationFileRepository.class);
@@ -29,6 +31,21 @@ public class AuthenticationFileRepository implements IAuthenticationRepository {
         } catch (IOException e) {
             LOG.error(e.getMessage());
         }
+    }
+
+    @Override
+    public Customer findByUsername(String username) throws IOException {
+        Path path = Paths.get(DATABASE_NAME);
+        List<String> data = Files.readAllLines(path);
+        for (String line : data) {
+            if (!line.trim().isEmpty()) {
+                String[] properties = line.split(",");
+                if (properties[0].trim().equalsIgnoreCase(username.trim())) {
+                    return new Customer(properties[0].trim(), properties[1].trim());
+                }
+            }
+        }
+        return null;
     }
 
     @Override
@@ -48,20 +65,4 @@ public class AuthenticationFileRepository implements IAuthenticationRepository {
         }
         return false;
     }
-
-    @Override
-    public Customer findByUsername(String username) throws IOException {
-        Path path = Paths.get(DATABASE_NAME);
-        List<String> data = Files.readAllLines(path);
-        for (String line : data) {
-            if (!line.trim().isEmpty()) {
-                String[] properties = line.split(",");
-                if (properties[0].trim().equalsIgnoreCase(username.trim())) {
-                    return new Customer(properties[0].trim(), properties[1].trim());
-                }
-            }
-        }
-        return null;
-    }
-
 }
